@@ -1,59 +1,76 @@
-$(document).ready(function () {
-  $(".menu-icon").on("click", function () {
-    $("nav ul").toggleClass("showing");
-  });
-});
+let slideIndex = 1;
+showSlides(slideIndex);
 
-// Scrolling Effect
+function prevSlide() {
+  showSlides((slideIndex -= 1));
+}
 
-$(window).on("scroll", function () {
-  if ($(window).scrollTop()) {
-    $("nav").addClass("black");
-  } else {
-    $("nav").removeClass("black");
+function nextSlide() {
+  showSlides((slideIndex += 1));
+}
+
+function showSlides(n) {
+  let slides = document.querySelectorAll(".slide");
+
+  if (n > slides.length) {
+    slideIndex = 1;
   }
-});
-let mainPosts = document.querySelectorAll(".main-post");
-let posts = document.querySelectorAll(".post");
-
-let i = 0;
-let postIndex = 0;
-let currentPost = posts[postIndex];
-let currentMainPost = mainPosts[postIndex];
-
-let progressInterval = setInterval(progress, 100); // 180
-
-function progress() {
-  if (i === 100) {
-    i = -5;
-    // reset progress bar
-    currentPost.querySelector(".progress-bar__fill").style.width = 0;
-    document.querySelector(
-      ".progress-bar--primary .progress-bar__fill"
-    ).style.width = 0;
-    currentPost.classList.remove("post--active");
-
-    postIndex++;
-
-    currentMainPost.classList.add("main-post--not-active");
-    currentMainPost.classList.remove("main-post--active");
-
-    // reset postIndex to loop over the slides again
-    if (postIndex === posts.length) {
-      postIndex = 0;
-    }
-
-    currentPost = posts[postIndex];
-    currentMainPost = mainPosts[postIndex];
-  } else {
-    i++;
-    currentPost.querySelector(".progress-bar__fill").style.width = `${i}%`;
-    document.querySelector(
-      ".progress-bar--primary .progress-bar__fill"
-    ).style.width = `${i}%`;
-    currentPost.classList.add("post--active");
-
-    currentMainPost.classList.add("main-post--active");
-    currentMainPost.classList.remove("main-post--not-active");
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.transform = `translateX(-${(slideIndex - 1) * 100}%)`;
   }
 }
+
+document.querySelector(".prev").addEventListener("click", () => {
+  prevSlide();
+});
+
+document.querySelector(".next").addEventListener("click", () => {
+  nextSlide();
+});
+const faqsContainer = document.querySelector(".faqs-container");
+
+const faqs = [
+  {
+    question: "What is Lorem Ipsum?",
+    answer:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    question: "Why do we use it?",
+    answer:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+  },
+  {
+    question: "Where does it come from?",
+    answer:
+      "Contrary to popular belief, Lorem Ipsum is not simply random text.",
+  },
+  {
+    question: "What is Lorem Ipsum?",
+    answer:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    question: "Why do we use it?",
+    answer:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+  },
+  {
+    question: "Where does it come from?",
+    answer:
+      "Contrary to popular belief, Lorem Ipsum is not simply random text.",
+  },
+];
+
+faqs.forEach((faq) => {
+  const faqElement = document.createElement("div");
+  faqElement.classList.add("faq-item");
+  faqElement.innerHTML = `
+    <div class="faq-question">${faq.question}</div>
+    <div class="faq-answer">${faq.answer}</div>
+  `;
+  faqsContainer.appendChild(faqElement);
+});
