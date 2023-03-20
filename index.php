@@ -16,8 +16,8 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#cards-container">lawyers</a></li>
-                <li><a href="#">Log in</a></li>
-                <li><a href="#">Sign up</a></li>
+                <li><a href="login.php">Log in</a></li>
+                <li><a href="signup.php">Sign up</a></li>
             </ul>
             <div class="burger">
                 <div class="line"></div>

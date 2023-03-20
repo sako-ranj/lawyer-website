@@ -26,9 +26,12 @@ body {
 }
 
 .logo {
-  color: #fff;
+  color: #eeeeee;
   font-size: 24px;
   text-decoration: none;
+}
+.logo:hover {
+  color: #00adb5;
 }
 
 .nav-links {
@@ -42,8 +45,11 @@ body {
 }
 
 .nav-links li a {
-  color: #fff;
+  color: #eeeeee;
   text-decoration: none;
+}
+.nav-links li a:hover {
+  color: #00adb5;
 }
 
 .burger {
@@ -54,7 +60,7 @@ body {
 .burger .line {
   width: 25px;
   height: 3px;
-  background-color: #fff;
+  background-color: #eeeeee;
   margin: 5px;
 }
 
@@ -162,7 +168,7 @@ body {
   z-index: 1;
   font-size: 50px;
   font-weight: bold;
-  color: #fff;
+  color: #eeeeee;
   padding: 10px;
   cursor: pointer;
   transition: 0.6s ease;
@@ -170,7 +176,7 @@ body {
 
 .prev:hover,
 .next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #00adb5;
 }
 
 .prev {
@@ -231,8 +237,8 @@ body {
 }
 
 .card-content button {
-  background-color: #4caf50;
-  color: #fff;
+  background-color: #00adb5;
+  color: #eeeeee;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -241,7 +247,7 @@ body {
 }
 
 .card-content button:hover {
-  background-color: #2e8b57;
+  background-color: #00adb5;
 }
 .faq-item {
   margin-bottom: 20px;
@@ -258,4 +264,57 @@ body {
 .faq-answer {
   font-size: 14px;
   line-height: 1.5;
+}
+.login,
+.signup {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #00adb5;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.login h1,
+.signup h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+input[type="submit"] {
+  background-color: #00adb5;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #00adb5;
+}
+
+.error {
+  color: #f00;
+  margin-bottom: 10px;
+}
+
+.success {
+  color: #00adb5;
+  margin-bottom: 10px;
 }
