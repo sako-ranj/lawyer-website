@@ -48,7 +48,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
                     aliquam aliquam lorem, in pulvinar nibh rhoncus nec.
                 </p>
-                <button>Read More</button>
+                <button onclick="">Read More</button>
             </div>
         </div>
         <div class="card">
@@ -59,7 +59,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
                     aliquam aliquam lorem, in pulvinar nibh rhoncus nec.
                 </p>
-                <button>Read More</button>
+                <a href="profile_screen.php"> <button>Read More</button></a>
             </div>
         </div>
         <div class="card">
