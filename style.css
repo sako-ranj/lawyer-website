@@ -273,7 +273,9 @@ body {
   border: 1px solid #00adb5;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+margin-top: 200px;
 }
+
 
 .login h1,
 .signup h1 {
