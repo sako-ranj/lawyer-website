@@ -207,10 +207,10 @@
             <td><i class="material-icons"> call </i> name</td>
           </tr>
           <tr>
-            <td><i class="material-icons"> call </i> name</td>
+            <td><i class="material-icons"> Experince  </i> Experince</td>
           </tr>
           <tr>
-            <td><i class="material-icons"> call </i> name</td>
+            <td><i class="material-icons"> call </i> CV</td>
           </tr>
 
           <tr>
