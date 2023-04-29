@@ -17,8 +17,9 @@ if (isset($_POST['submit'])) {
   if (empty($_POST['password'])) {
     $passErr = 'pass is required';
   } else {
-    $pass = filter_input(INPUT_POST, 'pass', FILTER_SANITIZE_SPECIAL_CHARS);
+    $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
   }
+
 
   if (empty($nameErr) && empty($emailErr) && empty($passErr)) {
     // add to database

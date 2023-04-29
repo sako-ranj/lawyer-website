@@ -1,23 +1,41 @@
 <?php include 'inc/header.php' ?>
 <?php
+$email = $pass = '';
+$emailErr = $passErr = '';
 if (isset($_POST['submit'])) {
-  $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-  $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
 
-
-  // Query the database to get the user with the email and password
-  $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-  $result = mysqli_query($conn, $sql);
-
-  if (mysqli_num_rows($result) == 1) {
-    // Login successful
-    header('Location: index.php');
+  if (empty($_POST['email'])) {
+    $emailErr = 'email is required';
   } else {
-    // Login failed
-    $error = 'Invalid email or password.';
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
+  }
+  if (empty($_POST['password'])) {
+    $passErr = 'pass is required';
+  } else {
+    $pass = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
   }
 
-  mysqli_close($conn);
+  if (empty($emailErr) && empty($passErr)) {
+    // check if user exists in database
+    $sql = "SELECT * FROM users WHERE email='$email'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+      $row = mysqli_fetch_assoc($result);
+      // check password
+      if (password_verify($pass, $row['password'])) {
+        // login successful
+        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['user_name'] = $row['name'];
+        header('Location: index.php');
+      } else {
+        // password incorrect
+        $passErr = 'Incorrect password';
+      }
+    } else {
+      // user not found
+      $emailErr = 'User not found';
+    }
+  }
 }
 ?>
 <div class="login">
