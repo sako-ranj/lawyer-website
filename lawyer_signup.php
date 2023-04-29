@@ -15,9 +15,9 @@ if (isset($_POST['submit'])) {
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
     }
     if (empty($_POST['password'])) {
-        $passErr = 'Password is required';
+        $passErr = 'pass is required';
     } else {
-        $pass = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+        $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
     }
     if (empty($_POST['experience'])) {
         $expErr = 'Experience is required';
@@ -107,7 +107,7 @@ if (isset($_POST['submit'])) {
     } else {
         $imageErr = 'Error uploading file';
     }
- 
+
 
 
 
@@ -138,7 +138,7 @@ if (isset($_POST['submit'])) {
 } ?>
 
 <div class="signup">
-    <h1>Sign Up</h1>
+    <h1>Lawyer Sign Up</h1>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" id="signup-form" enctype="multipart/form-data">
 
         <div>
@@ -238,7 +238,8 @@ if (isset($_POST['submit'])) {
         <input type="submit" name="submit" value="Sign Up">
 
     </form>
-    <p>Already have a lawyer account? <a href="lawyer-login.php">Login</a></p>
+    <p>Already have a lawyer account? <a href="lawyer_login.php">Login</a></p>
+    <p>Are you a user? <a href="signup.php">Sign up</a></p>
 </div>
 </body>
 
