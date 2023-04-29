@@ -13,9 +13,9 @@
 <body>
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="logo">My Website</a>
+            <a href="#index.php" class="logo">My Website</a>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
+                <li><a href="#index.php">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#cards-container">lawyers</a></li>
                 <li><a href="login.php">Log in</a></li>
