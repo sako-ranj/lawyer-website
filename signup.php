@@ -3,7 +3,7 @@
 $name = $email = $pass = '';
 $nameErr = $emailErr = $passErr = '';
 if (isset($_POST['submit'])) {
- 
+
   if (empty($_POST['name'])) {
     $nameErr = 'name is required';
   } else {
@@ -60,7 +60,7 @@ if (isset($_POST['submit'])) {
     <input type="submit" value="Sign Up" name="submit">
   </form>
   <p>Already have an account? <a href="login.php">Login</a></p>
-  <p>Are you a lawyer? <a href="lawyer_signup.php">Login</a></p>
+  <p>Are you a lawyer? <a href="lawyer_signup.php">Sign up</a></p>
 </div>
 </body>
 
