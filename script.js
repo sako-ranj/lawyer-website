@@ -54,3 +54,30 @@ signupForm.addEventListener("submit", (e) => {
   const password = signupPassword.value;
   // Call your signup function here, passing in the name, email, and password values
 });
+const searchForm = document.querySelector("#search-form");
+const searchInput = document.querySelector("#search-input");
+const cardsContainer = document.querySelector(".cards-container");
+
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const query = searchInput.value;
+  fetch(`search_lawyers.php?query=${query}`)
+    .then((response) => response.json())
+    .then((lawyers) => {
+      cardsContainer.innerHTML = "";
+      lawyers.forEach((lawyer) => {
+        const card = `
+          <div class="card">
+            <img src="${lawyer.image}" alt="${lawyer.name}" />
+            <div class="card-content">
+              <h3>${lawyer.name}</h3>
+              <p>${lawyer.description}</p>
+              <a href="profile_screen.php?id=${lawyer.id}"><button>View Profile</button></a>
+            </div>
+          </div>
+        `;
+        cardsContainer.insertAdjacentHTML("beforeend", card);
+      });
+    })
+    .catch((error) => console.error(error));
+});

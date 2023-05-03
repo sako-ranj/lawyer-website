@@ -14,6 +14,10 @@
 <div class="row">
     <div class="col-md-8 mx-auto">
         <h1 class="text-center">Lawyers</h1>
+        <form id="search-form" action="search_lawyers.php" method="GET">
+            <input type="text" id="search-input" name="query" placeholder="Search lawyers">
+            <button type="submit">Search</button>
+        </form>
     </div>
 </div>
 <div class="cards-container">
