@@ -9,3 +9,4 @@ if ($conn->connect_error) {
     # code...
     die("Connection Failed " . $conn->connect_error);
 }
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);

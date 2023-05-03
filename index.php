@@ -1,56 +1,47 @@
-<?php include 'inc/header.php'?>
-    <div class="slider">
-        <div class="slides">
-            <div class="slide slide1"></div>
-            <!---->
-            <div class="slide slide2"></div>
-            <!---->
-            <div class="slide slide3"></div>
-            <!---->
-        </div>
-        <a class="prev" onclick="prevSlide()">&#10094;</a>
-        <a class="next" onclick="nextSlide()">&#10095;</a>
+<?php include 'inc/header.php' ?>
+<div class="slider">
+    <div class="slides">
+        <div class="slide slide1"></div>
+        <!---->
+        <div class="slide slide2"></div>
+        <!---->
+        <div class="slide slide3"></div>
+        <!---->
     </div>
-    <div class="cards-container">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x200" alt="Card Image" />
-            <div class="card-content">
-                <h3>Card Title 1</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                    aliquam aliquam lorem, in pulvinar nibh rhoncus nec.
-                </p>
-                <button onclick="">Read More</button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/300x200" alt="Card Image" />
-            <div class="card-content">
-                <h3>Card Title 2</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                    aliquam aliquam lorem, in pulvinar nibh rhoncus nec.
-                </p>
-                <a href="profile_screen.php"> <button>Read More</button></a>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/300x200" alt="Card Image" />
-            <div class="card-content">
-                <h3>Card Title 3</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                    aliquam aliquam lorem, in pulvinar nibh rhoncus nec.
-                </p>
-                <button>Read More</button>
-            </div>
-        </div>
+    <a class="prev" onclick="prevSlide()">&#10094;</a>
+    <a class="next" onclick="nextSlide()">&#10095;</a>
+</div>
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h1 class="text-center">Lawyers</h1>
     </div>
-    <div class="faqs-container">
-        <h2>Frequently Asked Questions</h2>
-    </div>
+</div>
+<div class="cards-container">
+    <?php
 
-    <script src="script.js"></script>
+    // Select lawyers from the database
+    $result = $mysqli->query("SELECT * FROM lawyers");
+
+    // Loop through the lawyers and display their information
+    while ($row = $result->fetch_assoc()) {
+    ?>
+        <div class="card">
+            <img src="<?php echo $row['image']; ?>" alt="Lawyer Photo">
+            <h2><?php echo $row['name']; ?></h2>
+            <p><?php echo $row['bio']; ?></p>
+            <div class="button-container">
+                <a href="profile_screen.php" class="cyan-button view-profile">View Profile</a>
+            </div>
+        </div>
+    <?php
+    }
+
+    // Close the database connection
+    $mysqli->close();
+    ?>
+</div>
+
+<script src="script.js"></script>
 </body>
 
 </html>
