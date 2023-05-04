@@ -34,7 +34,10 @@
             <h2><?php echo $row['name']; ?></h2>
             <p><?php echo $row['bio']; ?></p>
             <div class="button-container">
-                <a href="profile_screen.php" class="cyan-button view-profile">View Profile</a>
+                <form action="profile_screen.php" method="POST">
+                    <input type="hidden" name="row" value="<?php echo $row['id']; ?>">
+                    <button type="submit" class="cyan-button view-profile">View Profile</button>
+                </form>
             </div>
         </div>
     <?php
@@ -44,6 +47,7 @@
     $mysqli->close();
     ?>
 </div>
+
 
 <script src="script.js"></script>
 </body>

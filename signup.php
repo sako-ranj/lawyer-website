@@ -1,7 +1,11 @@
-<?php include 'inc/header.php' ?>
 <?php
+session_start(); // start session
+
+include 'inc/header.php';
+
 $name = $email = $pass = '';
 $nameErr = $emailErr = $passErr = '';
+
 if (isset($_POST['submit'])) {
 
   if (empty($_POST['name'])) {
@@ -9,33 +13,48 @@ if (isset($_POST['submit'])) {
   } else {
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
   }
+
   if (empty($_POST['email'])) {
     $emailErr = 'email is required';
   } else {
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
   }
+
   if (empty($_POST['password'])) {
     $passErr = 'pass is required';
   } else {
     $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
   }
 
-
   if (empty($nameErr) && empty($emailErr) && empty($passErr)) {
     // add to database
     $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$pass')";
     if (mysqli_query($conn, $sql)) {
       // success
+      $_SESSION['success_msg'] = "You have successfully signed up!";
+      $_SESSION['loggedin'] = true;
+      $_SESSION['loggedin_user'] = $name;
       header('Location: index.php');
+      exit();
     } else {
       // error
-      echo 'Error: ' . mysqli_error($conn);
+      $_SESSION['error_msg'] = "Oops, something went wrong. Please try again later.";
+      header('Location: signup.php');
+      exit();
     }
   }
 }
 ?>
+
 <div class="signup">
   <h1>Sign Up</h1>
+  <?php if (isset($_SESSION['error_msg'])) : ?>
+    <div class="alert alert-danger">
+      <?php echo $_SESSION['error_msg']; ?>
+    </div>
+    <?php unset($_SESSION['error_msg']); ?>
+  <?php endif; ?>
+
   <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" id="signup-form">
     <div>
       <label for="name">Name:</label>
@@ -60,6 +79,7 @@ if (isset($_POST['submit'])) {
     </div>
     <input type="submit" value="Sign Up" name="submit">
   </form>
+
   <p>Already have an account? <a href="login.php">Login</a></p>
   <p>Are you a lawyer? <a href="lawyer_signup.php">Sign up</a></p>
 </div>
