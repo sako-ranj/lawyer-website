@@ -1,6 +1,5 @@
 <?php include 'inc/header.php' ?>
 <?php
-session_start();
 $email = $password = '';
 $emailErr = $passwordErr = '';
 if (isset($_POST['submit'])) {
@@ -42,6 +41,8 @@ if (isset($_POST['submit'])) {
                 $_SESSION['loggedin'] = true;
                 $_SESSION['lawyer_id'] = $row['id'];
                 $_SESSION['lawyer_name'] = $row['name'];
+                $_SESSION['user_type'] = 'lawyer';
+
                 echo "done";
                 // redirect to dashboard
                 header('Location: index.php');

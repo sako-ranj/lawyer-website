@@ -1,5 +1,4 @@
 <?php
-session_start(); // start session
 
 include 'inc/header.php';
 
@@ -34,6 +33,8 @@ if (isset($_POST['submit'])) {
       $_SESSION['success_msg'] = "You have successfully signed up!";
       $_SESSION['loggedin'] = true;
       $_SESSION['user_name'] = $name;
+      $_SESSION['user_type'] = 'user';
+
       header('Location: index.php');
       exit();
     } else {

@@ -1,6 +1,5 @@
 <?php include 'inc/header.php' ?>
-<?php 
-session_start();
+<?php
 $email = $pass = '';
 $emailErr = $passErr = '';
 if (isset($_POST['submit'])) {
@@ -28,6 +27,8 @@ if (isset($_POST['submit'])) {
         $_SESSION['loggedin'] = true;
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['user_name'] = $row['name'];
+        $_SESSION['user_type'] = 'user';
+
         header('Location: index.php');
       } else {
         // password incorrect

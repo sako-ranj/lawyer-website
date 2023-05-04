@@ -1,4 +1,12 @@
-<?php include 'inc/header.php' ?>
+<?php
+include 'inc/header.php';
+if (isset($_SESSION['user_name'])) {
+    $username = $_SESSION['user_name'];
+?>
+    <div class="container">
+        <h1 id="welcome" style="margin-left: 150px;">Welcome, <?php echo $_SESSION['user_name']; ?>!</h1>
+    </div>
+<?php } ?>
 <div class="slider">
     <div class="slides">
         <div class="slide slide1"></div>
@@ -53,3 +61,15 @@
 </body>
 
 </html>
+<script>
+    // Wait for page to load
+    window.addEventListener("load", function() {
+        // Get the welcome message element
+        var welcome = document.getElementById("welcome");
+
+        // Fade out the message after 3 seconds
+        setTimeout(function() {
+            welcome.style.opacity = "0";
+        }, 3000);
+    });
+</script>

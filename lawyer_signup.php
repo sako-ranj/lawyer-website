@@ -1,6 +1,5 @@
 <?php include 'inc/header.php' ?>
 <?php
-session_start();
 $name = $email = $pass = $exp = $cv = $phone = $city = $bio = $image = $ig = $fb = $wa = $vb = '';
 $nameErr = $emailErr = $passErr = $expErr = $cvErr = $phoneErr = $cityErr = $bioErr = $imageErr = $igErr = $fbErr = $waErr = $vbErr = '';
 if (isset($_POST['submit'])) {
@@ -117,7 +116,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['success_msg'] = "You have successfully signed up!";
         $_SESSION['lawyer_loggedin'] = true;
         $_SESSION['lawyer_name'] = $name;
-
+        $_SESSION['user_type'] = 'lawyer';
         // prepare sql statement to insert data
         $sql = "INSERT INTO lawyers (name, email, password, experience, phone, city, bio, cv, image, instagram, facebook, whatsapp, viber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
