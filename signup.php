@@ -26,10 +26,8 @@ if (isset($_POST['submit'])) {
   }
 
   if (empty($nameErr) && empty($emailErr) && empty($passErr)) {
-    // add to database
     $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$pass')";
     if (mysqli_query($conn, $sql)) {
-      // success
       $_SESSION['success_msg'] = "You have successfully signed up!";
       $_SESSION['loggedin'] = true;
       $_SESSION['user_name'] = $name;
@@ -38,7 +36,6 @@ if (isset($_POST['submit'])) {
       header('Location: index.php');
       exit();
     } else {
-      // error
       $_SESSION['error_msg'] = "Oops, something went wrong. Please try again later.";
       header('Location: signup.php');
       exit();

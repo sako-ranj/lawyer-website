@@ -30,7 +30,6 @@ document.querySelector(".prev").addEventListener("click", () => {
 document.querySelector(".next").addEventListener("click", () => {
   nextSlide();
 });
-// Get references to the form and input fields
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
 const loginEmail = document.getElementById("login-email");
@@ -39,20 +38,17 @@ const signupName = document.getElementById("signup-name");
 const signupEmail = document.getElementById("signup-email");
 const signupPassword = document.getElementById("signup-password");
 
-// Add event listeners to the login and signup forms
 loginForm.addEventListener("submit", (e) => {
-  e.preventDefault(); // Prevent the form from submitting
+  e.preventDefault();
   const email = loginEmail.value;
   const password = loginPassword.value;
-  // Call your login function here, passing in the email and password values
 });
 
 signupForm.addEventListener("submit", (e) => {
-  e.preventDefault(); // Prevent the form from submitting
+  e.preventDefault(); 
   const name = signupName.value;
   const email = signupEmail.value;
   const password = signupPassword.value;
-  // Call your signup function here, passing in the name, email, and password values
 });
 const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search-input");

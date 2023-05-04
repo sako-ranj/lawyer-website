@@ -111,29 +111,22 @@ if (isset($_POST['submit'])) {
 
 
 
-    // if there are no errors, proceed to save data to database
     if ($nameErr == '' && $emailErr == '' && $passErr == '' && $expErr == '' && $cvErr == '' && $phoneErr == '' && $cityErr == '' && $bioErr == '' && $imageErr == '' && $igErr == '' && $fbErr == '' && $waErr == '' && $vbErr == '') {
         $_SESSION['success_msg'] = "You have successfully signed up!";
         $_SESSION['lawyer_loggedin'] = true;
         $_SESSION['lawyer_name'] = $name;
         $_SESSION['user_type'] = 'lawyer';
-        // prepare sql statement to insert data
         $sql = "INSERT INTO lawyers (name, email, password, experience, phone, city, bio, cv, image, instagram, facebook, whatsapp, viber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // create prepared statement
         $stmt = mysqli_prepare($conn, $sql);
 
-        // bind parameters to prepared statement
         mysqli_stmt_bind_param($stmt, 'sssssssssssss', $name, $email, $pass, $exp, $phone, $city, $bio, $cv, $image, $ig, $fb, $wa, $vb);
 
-        // execute prepared statement
         mysqli_stmt_execute($stmt);
 
-        // close statement and connection
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
 
-        // redirect to index page
         header('Location: index.php');
         exit();
     }
@@ -246,30 +239,3 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
-
-<script>
-    // validate file size
-    const cvInput = document.getElementById('signup-cv');
-    cvInput.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        const maxFileSize = 5 * 1024 * 1024; // 5MB
-        if (file.size > maxFileSize) {
-            event.preventDefault();
-            document.getElementById('cv-validation').innerHTML = 'File size exceeds 5MB limit.';
-        } else {
-            document.getElementById('cv-validation').innerHTML = '';
-        }
-    });
-
-    const imageInput = document.getElementById('signup-image');
-    imageInput.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        const maxFileSize = 5 * 1024 * 1024; // 5MB
-        if (file.size > maxFileSize) {
-            event.preventDefault();
-            document.getElementById('image-validation').innerHTML = 'File size exceeds 5MB limit.';
-        } else {
-            document.getElementById('image-validation').innerHTML = '';
-        }
-    });
-</script>

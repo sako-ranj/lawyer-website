@@ -171,36 +171,27 @@
 </style>
 </head>
 <?php
-// Start the session
-session_start();
 
-// Check if the user is logged in, otherwise redirect to the login page
-// if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//   header('location: login.php');
-//   exit;
-// }
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+  header('location: login.php');
+  exit;
+}
 
-// Check if the id parameter is present in the URL
 if (!isset($_POST['row'])) {
   header('location: index.php');
   exit;
 }
 
-// Include the database connection file
 
 
-// Find the lawyer by the id
 $id = $_POST['row'];
 $result = $mysqli->query("SELECT * FROM lawyers WHERE id='$id'");
 
-// Check if the lawyer was found
 if ($result->num_rows === 0) {
-  echo "index.php";
-  // header('location: index.php');
+  header('location: index.php');
   exit;
 }
 
-// Get the lawyer information
 $row = $result->fetch_assoc();
 $name = $row['name'];
 $experience = $row['experience'];
@@ -215,7 +206,6 @@ $fb = $row['facebook'];
 $wa = $row['whatsapp'];
 $vb = $row['viber'];
 
-// Close the database connection
 $mysqli->close();
 ?>
 
@@ -229,23 +219,23 @@ $mysqli->close();
     <table class="profile-info">
       <tbody>
         <tr>
-          <td><i class="material-icons"> name </i> <?php echo $name; ?></td>
+          <td><i class="material-icons"> name: </i> <?php echo $name; ?></td>
         </tr>
         <tr>
-          <td><i class="material-icons"> Experience </i> <?php echo $experience; ?></td>
+          <td><i class="material-icons"> Experience: </i> <?php echo $experience; ?></td>
         </tr>
         <tr>
-          <td><i class="material-icons"> cv </i> <?php echo $cv; ?></td>
+          <td><i class="material-icons"> cv: </i> <?php echo $cv; ?></td>
         </tr>
 
         <tr>
-          <td><i class="material-icons"> call </i> <?php echo $phone; ?></td>
+          <td><i class="material-icons"> call: </i> <?php echo $phone; ?></td>
         </tr>
         <tr>
-          <td><i class="material-icons"> email</i> <?php echo $email; ?></td>
+          <td><i class="material-icons"> email: </i> <?php echo $email; ?></td>
         </tr>
         <tr>
-          <td><i class="material-icons"> location</i> <?php echo $location; ?></td>
+          <td><i class="material-icons"> location:</i> <?php echo $location; ?></td>
         </tr>
       </tbody>
     </table>

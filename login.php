@@ -16,14 +16,11 @@ if (isset($_POST['submit'])) {
   }
 
   if (empty($emailErr) && empty($passErr)) {
-    // check if user exists in database
     $sql = "SELECT * FROM users WHERE email='$email'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
       $row = mysqli_fetch_assoc($result);
-      // check password
       if (password_verify($pass, $row['password'])) {
-        // login successful
         $_SESSION['loggedin'] = true;
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['user_name'] = $row['name'];
@@ -31,11 +28,9 @@ if (isset($_POST['submit'])) {
 
         header('Location: index.php');
       } else {
-        // password incorrect
         $passErr = 'Incorrect password';
       }
     } else {
-      // user not found
       $emailErr = 'User not found';
     }
   }

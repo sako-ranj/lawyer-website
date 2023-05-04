@@ -17,47 +17,34 @@ if (isset($_POST['submit'])) {
         $password = $_POST['password'];
     }
 
-    // If there are no errors, proceed to check the credentials against the database
     if ($emailErr == '' && $passwordErr == '') {
-        // prepare sql statement to fetch user data
         $sql = "SELECT * FROM lawyers WHERE email = ?";
 
-        // create prepared statement
         $stmt = mysqli_prepare($conn, $sql);
 
-        // bind parameters to statement
         mysqli_stmt_bind_param($stmt, 's', $email);
 
-        // execute statement
         mysqli_stmt_execute($stmt);
 
-        // get result set
         $result = mysqli_stmt_get_result($stmt);
 
-        // check if user exists and password is correct
         if ($row = mysqli_fetch_assoc($result)) {
             if (password_verify($password, $row['password'])) {
-                // set session variables
                 $_SESSION['loggedin'] = true;
                 $_SESSION['lawyer_id'] = $row['id'];
                 $_SESSION['lawyer_name'] = $row['name'];
                 $_SESSION['user_type'] = 'lawyer';
 
-                echo "done";
-                // redirect to dashboard
+        
                 header('Location: index.php');
                 exit;
             } else {
                 $passwordErr = 'Invalid email or password';
-                echo "not done1";
             }
         } else {
-            echo "not done2";
-
             $passwordErr = 'Invalid email or password';
         }
 
-        // close statement
         mysqli_stmt_close($stmt);
     }
 }

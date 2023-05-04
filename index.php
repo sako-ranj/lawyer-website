@@ -4,7 +4,12 @@ if (isset($_SESSION['user_name'])) {
     $username = $_SESSION['user_name'];
 ?>
     <div class="container">
-        <h1 id="welcome" style="margin-left: 150px;">Welcome, <?php echo $_SESSION['user_name']; ?>!</h1>
+        <h1 id="welcome" style="margin-left: 150px;"> <?php 
+        if($_SESSION['user_type']!='a'){
+            echo "welcome mr. ".$_SESSION['user_name'];  
+        }
+            ?>
+        </h1>
     </div>
 <?php } ?>
 <div class="slider">
@@ -31,10 +36,8 @@ if (isset($_SESSION['user_name'])) {
 <div class="cards-container">
     <?php
 
-    // Select lawyers from the database
     $result = $mysqli->query("SELECT * FROM lawyers");
 
-    // Loop through the lawyers and display their information
     while ($row = $result->fetch_assoc()) {
     ?>
         <div class="card">
@@ -51,7 +54,6 @@ if (isset($_SESSION['user_name'])) {
     <?php
     }
 
-    // Close the database connection
     $mysqli->close();
     ?>
 </div>
@@ -62,14 +64,11 @@ if (isset($_SESSION['user_name'])) {
 
 </html>
 <script>
-    // Wait for page to load
     window.addEventListener("load", function() {
-        // Get the welcome message element
         var welcome = document.getElementById("welcome");
 
-        // Fade out the message after 3 seconds
         setTimeout(function() {
             welcome.style.opacity = "0";
-        }, 3000);
+        }, 2000);
     });
 </script>
