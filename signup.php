@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
       // success
       $_SESSION['success_msg'] = "You have successfully signed up!";
       $_SESSION['loggedin'] = true;
-      $_SESSION['loggedin_user'] = $name;
+      $_SESSION['user_name'] = $name;
       header('Location: index.php');
       exit();
     } else {

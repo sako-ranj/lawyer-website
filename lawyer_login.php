@@ -39,8 +39,9 @@ if (isset($_POST['submit'])) {
         if ($row = mysqli_fetch_assoc($result)) {
             if (password_verify($password, $row['password'])) {
                 // set session variables
-                $_SESSION['user_id'] = $row['id'];
-                $_SESSION['user_name'] = $row['name'];
+                $_SESSION['loggedin'] = true;
+                $_SESSION['lawyer_id'] = $row['id'];
+                $_SESSION['lawyer_name'] = $row['name'];
                 echo "done";
                 // redirect to dashboard
                 header('Location: index.php');

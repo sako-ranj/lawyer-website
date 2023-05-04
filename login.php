@@ -1,5 +1,6 @@
 <?php include 'inc/header.php' ?>
-<?php
+<?php 
+session_start();
 $email = $pass = '';
 $emailErr = $passErr = '';
 if (isset($_POST['submit'])) {
@@ -24,6 +25,7 @@ if (isset($_POST['submit'])) {
       // check password
       if (password_verify($pass, $row['password'])) {
         // login successful
+        $_SESSION['loggedin'] = true;
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['user_name'] = $row['name'];
         header('Location: index.php');
